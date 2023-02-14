@@ -24,23 +24,23 @@ public class User {
 
         for(int i = 0; i < users.length; i++)
         {
-            result = result + users[i].GetAge();
+            result = result + users[i].getAge();
         }
         avrg = result/tableLength;
 
         for(int i = 0; i < users.length; i++)
         {
-            if(users[i].GetAge() < avrg)
+            if(users[i].getAge() < avrg)
             {
-                System.out.println(users[i].GetName());
+                System.out.println(users[i].getName());
             }
         }
     }
-    public String GetName()
+    public String getName()
     {
         return name;
     }
-    public Integer GetAge()
+    public Integer getAge()
     {
         return age;
     }

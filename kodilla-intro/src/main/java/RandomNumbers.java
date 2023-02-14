@@ -1,7 +1,8 @@
 import java.util.Random;
 public class RandomNumbers {
+    private int min;
+    private int max;
     Random rand = new Random();
-    int upperbound;
     int int_random;
     public RandomNumbers(int range)
     {
@@ -12,30 +13,40 @@ public class RandomNumbers {
     {
         RandomNumbers randomNumbers = new RandomNumbers(30);
         randomNumbers.lotto();
+        System.out.println("Min value is: " + randomNumbers.getMin());
+        System.out.println("Max value is: " + randomNumbers.getMax());
+
     }
 
     public void lotto()
     {
+        this.min = 30;
+        this.max = 0;
         int result = 0;
-        int iteration = 0;
 
-        for(int i = 0; i < iteration +1; i++)
-       {
-           RefreshRandomNumbers(i);
-           if(result > 5000)
-           {
-               System.out.println(result);
-               return;
-           }
-           iteration = iteration +1;
-           result = result + int_random;
-       }
+        while(result < 5000)
+        {
+            result = result + int_random;
+            int_random = rand.nextInt(30);
+
+            if(int_random <= min)
+            {
+                min = int_random;
+            }
+            if(int_random >= max)
+            {
+                max = int_random;
+            }
+        }
     }
 
-    public void RefreshRandomNumbers(int iteration)
+    public int getMin()
     {
-        int[] table = new int[iteration+1];
-        table[iteration] = int_random;
+        return min;
+    }
+    public int getMax()
+    {
+        return max;
     }
 
 

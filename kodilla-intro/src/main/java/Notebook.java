@@ -34,7 +34,7 @@ public class Notebook {
         {
             System.out.println("This notebook is not so heavy");
         }
-        else if(weight > 1000)
+        else
         {
             System.out.println("This notebook is really heavy");
         }
