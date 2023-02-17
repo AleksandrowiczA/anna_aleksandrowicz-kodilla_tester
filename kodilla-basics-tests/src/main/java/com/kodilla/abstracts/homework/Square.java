@@ -2,30 +2,31 @@ package com.kodilla.abstracts.homework;
 
 public class Square extends Shape{
 
-
     private double a;
-    private double b;
 
-    public Square(double a, double b) {
-        super(a,b);
+    public Square(double a)
+    {
+        this.a = a;
+    }
+
+
+    @Override
+    public void surfaceArea()
+    {
+        double surface = getA()*getA();
+        System.out.println("Square Surface Area is: " + surface);
+
     }
 
     @Override
-    public void surfaceArea(double a, double b)
+    public void circuit()
     {
-      Square square = new Square(a, b);
-      double result;
-      result = square.getA()*square.getA();
-        System.out.println("Square surface: " + result);
+        double circ = 4 * getA();
+        System.out.println("Square circuit equals: " + circ);
     }
 
-    @Override
-    public void circuit(double a, double b)
+    public double getA()
     {
-        Square square = new Square(a, b);
-        double result;
-        result = square.getA() * 4;
-        System.out.println("Square circuit: " + result);
+        return a;
     }
-
 }

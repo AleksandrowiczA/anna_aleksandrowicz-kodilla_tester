@@ -1,26 +1,21 @@
 package com.kodilla.abstracts.homework;
 
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
+        Square square = new Square(2);
+        square.surfaceArea();
+        square.circuit();
+        System.out.println();
 
-        double a = 5;
-        double b = 4;
-        double c = 3;
-        double h = 2;
+        Triangle triangle = new Triangle(2, 3, 4, 5);
+        triangle.surfaceArea();
+        triangle.circuit();
+        System.out.println();
 
-        Square square = new Square(a,b);
-        square.surfaceArea(a,b);
-        square.circuit(a,b);
-
-        Triangle triangle = new Triangle(a, b, h, c);
-        triangle.surfaceArea(a, b);
-        triangle.circuit(a,b);
-
-        Rectangle rectangle = new Rectangle(a,b);
-        rectangle.surfaceArea(a,b);
-        rectangle.circuit(a,b);
-
-
+        Rectangle rectangle = new Rectangle(3, 5);
+        rectangle.surfaceArea();
+        rectangle.circuit();
 
     }
 }

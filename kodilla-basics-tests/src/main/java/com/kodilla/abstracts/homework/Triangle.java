@@ -2,40 +2,48 @@ package com.kodilla.abstracts.homework;
 
 public class Triangle extends Shape{
 
-    private double h;
+    private double a;
+    private double b;
     private double c;
-    public Triangle(double a, double b, double h, double c) {
-        super(a, b);
-        this.h = h;
+    private double h;
+
+    public Triangle(double a, double b, double c, double h)
+    {
+        this.a = a;
+        this.b = b;
         this.c = c;
+        this.h = h;
+    }
+
+
+    @Override
+    public void surfaceArea()
+    {
+        double surface = (getA() * getH())/2;
+        System.out.println("Triangle surface area equals:" + surface);
     }
 
     @Override
-    public void surfaceArea(double a, double b)
+    public void circuit()
     {
-        Triangle triangle = new Triangle(a, b, h, c);
-        double result;
-        result = (triangle.getA() * triangle.getH())/2;
-        System.out.println("Triangle surface: " + result);
-
+        double circ = getA() + getB() + getC();
+        System.out.println("Triangle circuit equals: " + circ);
     }
 
-    @Override
-    public void circuit(double a, double b)
+    public double getA()
     {
-        Triangle triangle = new Triangle(a, b, h, c);
-        double result;
-        result = triangle.getA()+ triangle.getB()+ triangle.getC();
-        System.out.println("Trianle circuit: " + result);
-
+        return a;
     }
-
-    public double getH()
+    public double getB()
     {
-        return h;
+        return b;
     }
     public double getC()
     {
         return c;
+    }
+    public double getH()
+    {
+        return h;
     }
 }

@@ -2,26 +2,37 @@ package com.kodilla.abstracts.homework;
 
 public class Rectangle extends Shape{
 
-    public Rectangle(double a, double b) {
-        super(a, b);
+    private double a;
+    private double b;
+
+    public Rectangle(double a, double b)
+    {
+        this.a = a;
+        this.b = b;
+    }
+
+
+    @Override
+    public void surfaceArea()
+    {
+        double surface = getA() * getB();
+        System.out.println("Rectangle surface area equals: " + surface);
     }
 
     @Override
-    public void surfaceArea(double a, double b)
+    public void circuit()
     {
-        Rectangle rectangle = new Rectangle(a,b);
-        double result;
-        result = rectangle.getA() * rectangle.getB();
-        System.out.println("Rectangle surface: " + result);
+        double circ = 2 * getA() + 2 * getB();
+        System.out.println("Rectangle circuit equals: " + circ);
     }
 
-    @Override
-    public void circuit(double a, double b)
+    public double getA()
     {
-        Rectangle rectangle = new Rectangle(a,b);
-        double result;
-        result = (rectangle.getA() * 2) + (rectangle.getB() * 2);
-        System.out.println("Rectangle circuit: " + result);
+        return a;
+    }
 
+    public double getB()
+    {
+        return b;
     }
 }
