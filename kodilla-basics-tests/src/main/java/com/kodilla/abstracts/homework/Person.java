@@ -4,9 +4,9 @@ public class Person {
 
     private String firstNAme;
     private int age;
-    private String job;
+    private Job job;
 
-    public Person(String firstNAme, int age, String job)
+    public Person(String firstNAme, int age, Job job)
     {
         this.firstNAme = firstNAme;
         this.age = age;
@@ -15,35 +15,25 @@ public class Person {
 
     public static void main(String[] args)
     {
-        Person person = new Person("Anna", 30, "Hairdresser");
-        Hairdresser hairdresser = new Hairdresser();
-        System.out.println("Name: " + person.getFirstNAme() + "  Wiek: " + person.getAge() + "   Job: " + person.getJob());
-        System.out.println("Average salary: " + hairdresser.getSalary() + ",-" + "  Responsibilities: " + hairdresser.getResponsibilities());
-        System.out.println();
-
-        Person person1 = new Person("Wojtek", 45, "Dentist");
-        Dentist dentist = new Dentist();
-        System.out.println("Name: " + person1.getFirstNAme() + "  Wiek: " + person1.getAge() + "   Job: " + person1.getJob());
-        System.out.println("Average salary: " + dentist.getSalary() + ",-" + "  Responsibilities: " + dentist.getResponsibilities());
-        System.out.println();
-
-        Person person2 = new Person("Lena", 28, "Teacher");
-        Teacher teacher = new Teacher();
-        System.out.println("Name: " + person2.getFirstNAme() + "  Wiek: " + person2.getAge() + "   Job: " + person2.getJob());
-        System.out.println("Average salary: " + teacher.getSalary() + ",-" + "  Responsibilities: " + teacher.getResponsibilities());
-
+        Person person1 = new Person("Anna", 30, new Hairdresser());
+        Person person2 = new Person("Wojtek", 45, new Dentist());
+        Person person3 = new Person("Lena", 28, new Teacher());
+        System.out.println(person1.getFirstNAme() + " " + person1.getAge());
+        System.out.println("Responsibilities: " + person1.getJob().getResponsibilities());
+        System.out.println(person2.getFirstNAme() + " " + person2.getAge());
+        System.out.println("Responsibilities: " + person2.getJob().getResponsibilities());
+        System.out.println(person3.getFirstNAme() + " " + person3.getAge());
+        System.out.println("Responsibilities: " + person3.getJob().getResponsibilities());
     }
-
     public String getFirstNAme()
     {
         return firstNAme;
     }
-
     public int getAge()
     {
         return age;
     }
-    public String getJob()
+    public Job getJob()
     {
         return job;
     }
