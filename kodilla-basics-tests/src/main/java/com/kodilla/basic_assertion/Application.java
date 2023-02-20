@@ -1,15 +1,16 @@
-package com.kodilla.basic_asseration;
+package com.kodilla.basic_assertion;
 
 public class Application {
 
     public static void main(String[] args) {
         Calculator calculator = new Calculator();
-        int a = 3;
-        int b = 8;
+        double a = 3;
+        double b = 8;
+        double c = 2;
 
-        int sumResult = calculator.sumUP(a, b);
-        int subtractionResult = calculator.subtraction(a, b);
-        int squareResult = calculator.square(a);
+        double sumResult = calculator.sum(a, b);
+        double subtractionResult = calculator.subtraction(a, b);
+        double squareResult = calculator.square(a, c);
         boolean correctSum = ResultChecker.assertEquals(11, sumResult);
         boolean correctSubtr = ResultChecker.assertEquals(-5, subtractionResult);
         boolean correctSquare = ResultChecker.assertEquals(9, squareResult);
