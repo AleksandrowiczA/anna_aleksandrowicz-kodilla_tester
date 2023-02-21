@@ -19,10 +19,10 @@ public class Bank {
       bank.addToSantander();
       bank.addToGetInBank();
       bank.addToBnp();
-      //System.out.println(bank.santander.getbalance());
-      //System.out.println(bank.getBalanceOfMachines());
-      //System.out.println(bank.santander.numberOfCashOut());
-      //System.out.println(bank.santander.numberOfCashIn());
+      System.out.println(bank.santander.getbalance());
+      System.out.println(bank.getBalanceOfMachines());
+      System.out.println(bank.santander.numberOfCashOut());
+      System.out.println(bank.santander.numberOfCashIn());
       System.out.println(bank.santander.averageOfCashOut());
       System.out.println(bank.santander.averageOfCashIn());
 
