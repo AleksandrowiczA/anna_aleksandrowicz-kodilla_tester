@@ -10,6 +10,10 @@ public class CashMachine {
         this.cash = new int[0];
     }
 
+    public int[] getValues() {
+        return cash;
+    }
+
     public void addTransaction(int amount)
     {
         size++;
