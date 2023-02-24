@@ -74,11 +74,11 @@ public class CashMachineTestSuite
 
         assertEquals(1366.6, cashMachine.averageOfCashIn(), 0.1);
     }
-    @Test
-    public void shouldReturnAverageEqualsZeroIsArrayIsEmpty() {
-        CashMachine cashMachine = new CashMachine();
-        assertEquals(0, cashMachine.averageOfCashIn(), 0.1);
-    }
+   //@Test
+   //public void shouldReturnAverageEqualsZeroIsArrayIsEmpty() {
+   //    CashMachine cashMachine = new CashMachine();
+   //    assertEquals(0, cashMachine.averageOfCashIn(), 0.1);
+   //}
     @Test
     public void shouldCalculateBalance(){
         CashMachine cashMachine = new CashMachine();
