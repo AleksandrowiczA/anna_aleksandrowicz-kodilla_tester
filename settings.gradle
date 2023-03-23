@@ -3,4 +3,5 @@ include 'kodilla-intro'
 include 'kodilla-basics-tests'
 include 'kodilla-collections'
 include 'kodilla-collections-advanced'
+include 'kodilla-stream'
 
