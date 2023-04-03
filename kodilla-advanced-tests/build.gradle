@@ -16,6 +16,7 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter-params:5.4.2'
     testImplementation project(path: ':kodilla-basics-tests')
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+    testImplementation('org.mockito:mockito-core:3.1.0')
 }
 
 test {
