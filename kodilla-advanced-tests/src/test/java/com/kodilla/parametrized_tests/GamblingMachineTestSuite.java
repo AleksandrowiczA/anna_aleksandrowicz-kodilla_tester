@@ -2,30 +2,34 @@ package com.kodilla.parametrized_tests;
 
 import com.kodilla.parametrized_tests.homework.GamblingMachine;
 import com.kodilla.parametrized_tests.homework.InvalidNumbersException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 
-import java.util.HashSet;
+import java.util.Arrays;
 import java.util.Set;
+import java.util.stream.Collectors;
+
+import static com.kodilla.basic_assertion.ResultChecker.assertEquals;
 
 public class GamblingMachineTestSuite {
 
-    private final GamblingMachine machine = new GamblingMachine();
-
     @ParameterizedTest
     @CsvFileSource(resources = "/gameMachineNumbers.csv", numLinesToSkip = 1)
-    public void testHowManyWinsWithCsvInput(String input) throws InvalidNumbersException {
-        String[] numbers = input.split(",");
-        Set<Integer> userNumbers = new HashSet<>();
-        for (String number : numbers) {
-            userNumbers.add(Integer.parseInt(number));
-        }
-        int expectedWins = 0;
-        int actualWins = machine.howManyWins(userNumbers);
-        Assertions.assertEquals(expectedWins, actualWins);
+    void testHowManyWins(String userNumbers, String computerNumbers) throws InvalidNumbersException
+    {
+        Set<Integer> ints =
+                Arrays.stream(userNumbers.split(","))
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toSet());
+
+        Set<Integer> comp =
+                Arrays.stream(userNumbers.split(","))
+                        .map(Integer::parseInt)
+                        .collect(Collectors.toSet());
+
+        Integer wins = GamblingMachine.howManyWins(ints,comp);
+
+
+        assertEquals(5, wins);
     }
-
-
-
 }
