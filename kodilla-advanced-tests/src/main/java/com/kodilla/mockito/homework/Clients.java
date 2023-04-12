@@ -10,4 +10,5 @@ public interface Clients {
     void addLocation(Location location);
 
     void removeLocation(Location location);
+
 }

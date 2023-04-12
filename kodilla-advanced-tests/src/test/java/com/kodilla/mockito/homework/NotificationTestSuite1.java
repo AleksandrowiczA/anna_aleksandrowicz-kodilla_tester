@@ -1,10 +1,12 @@
 package com.kodilla.mockito.homework;
 
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
-import org.testng.annotations.Test;
 
-import java.util.HashSet;
 import java.util.Set;
+
+import static org.testng.AssertJUnit.assertEquals;
+
 
 public class NotificationTestSuite1 {
     NotificationService notificationService = new NotificationService();
@@ -14,84 +16,76 @@ public class NotificationTestSuite1 {
 
     Location location1 = Mockito.mock(Location.class);
     Location location2 = Mockito.mock(Location.class);
+    Location location3 = Mockito.mock(Location.class);
     Notification notification = Mockito.mock(Notification.class);
 
    @Test
    public void shouldAddSubscriberToLocation() {
        notificationService.addSubscriber(client1, location1);
-
-       Set<Clients> subscribers = notificationService.getSubscribersByLocation(location1);
-       Set<Clients> expectedSubscribers = new HashSet<>();
-       expectedSubscribers.add(client1);
-       Mockito.verify(subscribers).equals(expectedSubscribers);
-       Mockito.verify(client1, Mockito.times(1)).receive(notification);
+       Mockito.verify(client1, Mockito.times(1)).addLocation(location1);
    }
-//
-  // @Test
-  // public void shouldNotAddDuplicateSubscriberToLocation() {
-  //     notificationService.addSubscriber(client1, location1);
-  //     notificationService.addSubscriber(client1, location1);
 
-  //     Set<Clients> subscribers = notificationService.getSubscribersByLocation(location1);
-  //     Set<Clients> expectedSubscribers = new HashSet<>();
-  //     expectedSubscribers.add(client1);
-  //     Mockito.verify(subscribers).equals(expectedSubscribers);
-  // }
+     @Test
+     public void shouldNotAddDuplicateSubscriberToLocation() {
+         notificationService.addSubscriber(client1, location1);
+         notificationService.addSubscriber(client1, location1);
+         notificationService.addSubscriber(client2, location1);
 
-  // @Test
-  // public void shouldRemoveSubscriberFromLocation() {
-  //     notificationService.addSubscriber(client1, location1);
-  //     notificationService.addSubscriber(client2, location1);
+         Set<Clients> subscribersAtLocation1 = notificationService.getSubscribersByLocation(location1);
+         assertEquals(2, subscribersAtLocation1.size());
+     }
 
-  //     notificationService.removeSubscriberFromLocation(client1, location1);
+     @Test
+     public void shouldRemoveSubscriberFromLocation() {
+         notificationService.addSubscriber(client1, location1);
+         notificationService.addSubscriber(client2, location2);
 
-  //     Set<Clients> subscribers = notificationService.getSubscribersByLocation(location1);
-  //     Set<Clients> expectedSubscribers = new HashSet<>();
-  //     expectedSubscribers.add(client2);
-  //     Mockito.verify(subscribers).equals(expectedSubscribers);
-  // }
+         notificationService.removeSubscriberFromLocation(client1, location1);
+         notificationService.removeSubscriberFromLocation(client2, location2);
 
-  // @Test
-  // public void shouldRemoveSubscriberFromAllLocations() {
-  //     notificationService.addSubscriber(client1, location1);
-  //     notificationService.addSubscriber(client1, location2);
-  //     notificationService.addSubscriber(client2, location1);
+         Mockito.verify(client1, Mockito.times(1)).removeLocation(location1);
+         Mockito.verify(client2, Mockito.times(1)).removeLocation(location2);
+     }
 
-  //     notificationService.removeSubscriber(client1);
+     @Test
+     public void shouldRemoveSubscriberFromAllLocations() {
+         notificationService.addSubscriber(client1, location1);
+         notificationService.addSubscriber(client1, location2);
+         notificationService.addSubscriber(client1, location3);
 
-  //     Set<Clients> subscribers1 = notificationService.getSubscribersByLocation(location1);
-  //     Set<Clients> expectedSubscribers1 = new HashSet<>();
-  //     expectedSubscribers1.add(client2);
-  //     Mockito.verify(subscribers1).equals(expectedSubscribers1);
+         notificationService.removeSubscriberFromLocation(client1, location1);
+         notificationService.removeSubscriberFromLocation(client1, location2);
+         notificationService.removeSubscriberFromLocation(client1, location3);
 
-  //     Set<Clients> subscribers2 = notificationService.getSubscribersByLocation(location2);
-  //     Set<Clients> expectedSubscribers2 = new HashSet<>();
-  //     Mockito.verify(subscribers2).equals(expectedSubscribers2);
-  // }
+         Mockito.verify(client1, Mockito.times(1)).removeLocation(location1);
+         Mockito.verify(client1, Mockito.times(1)).removeLocation(location2);
+         Mockito.verify(client1, Mockito.times(1)).removeLocation(location3);
 
- // @Test
- // public void shouldSendNotificationToAllSubscribers() {
- //      notificationService.addSubscriber(client1, location1);
- //      notificationService.addSubscriber(client2, location1);
- //      notificationService.addSubscriber(client3, location2);
- //
- //      notificationService.sendNotification(notification);
+     }
 
- //      Mockito.verify(client1, Mockito.times(1)).receive(notification);
- //      Mockito.verify(client2, Mockito.times(1)).receive(notification);
- //      Mockito.verify(client3, Mockito.times(1)).receive(notification);
- //}
+     @Test
+     public void shouldSendNotificationToAllSubscribers() {
+          notificationService.addSubscriber(client1, location1);
+          notificationService.addSubscriber(client2, location1);
+          notificationService.addSubscriber(client3, location2);
 
-  // @Test
-  // public void shouldSendNotificationToSubscribersOfLocation() {
-  //     notificationService.addSubscriber(client1, location1);
-  //     notificationService.addSubscriber(client2, location1);
-  //     notificationService.addSubscriber(client3, location2);
+          notificationService.sendNotification(notification);
 
-  //     notificationService.sendNotification(notification);
+          Mockito.verify(client1, Mockito.times(1)).receive(notification);
+          Mockito.verify(client2, Mockito.times(1)).receive(notification);
+          Mockito.verify(client3, Mockito.times(1)).receive(notification);
+    }
 
-  //     Mockito.verify(client1).receive(notification);
-  //     Mockito.verify(client2).receive(notification);
-  //     Mockito.verify(client3, Mockito.never()).receive(notification);
-  // }
+     @Test
+     public void shouldSendNotificationToSubscribersOfLocation() {
+         notificationService.addSubscriber(client1, location1);
+         notificationService.addSubscriber(client2, location1);
+         notificationService.addSubscriber(client3, location2);
+
+         notificationService.sendNotificationToLocation(notification, location1);
+
+         Mockito.verify(client1,Mockito.times(1)).receive(notification);
+         Mockito.verify(client2,Mockito.times(1)).receive(notification);
+         Mockito.verify(client3, Mockito.never()).receive(notification);
+     }
 }

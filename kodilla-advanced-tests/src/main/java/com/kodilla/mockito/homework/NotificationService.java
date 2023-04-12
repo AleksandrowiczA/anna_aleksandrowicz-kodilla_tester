@@ -15,6 +15,7 @@ public class NotificationService {
         allSubscribers.add(clients);
     }
 
+
     public void removeSubscriberFromLocation(Clients clients, Location location) {
         Set<Clients> subscribers = subscribersByLocation.get(location);
         if (subscribers != null) {
@@ -26,19 +27,25 @@ public class NotificationService {
         }
     }
 
-    public void removeSubscriber(Clients clients) {
-        Set<Location> locations = clients.getLocations();
-        for (Location location : locations) {
-            removeSubscriberFromLocation(clients, location);
-        }
-        allSubscribers.remove(clients);
-    }
+   // public void removeSubscriber(Clients clients) {
+   //     Set<Location> locations = clients.getLocations();
+   //     for (Location location : locations) {
+   //         removeSubscriberFromLocation(clients, location);
+   //     }
+   //     allSubscribers.remove(clients);
+   // }
 
     public void sendNotification(Notification notification) {
         Set<Clients> clients = new HashSet<>(allSubscribers);
         clients.addAll(getSubscribersByLocation(notification.getLocation()));
         clients.forEach(client -> client.receive(notification));
     }
+
+    public void sendNotificationToLocation(Notification notification, Location location) {
+        Set<Clients> clients = new HashSet<>(getSubscribersByLocation(location));
+        clients.forEach(client -> client.receive(notification));
+    }
+
 
     public Set<Clients> getSubscribersByLocation(Location location) {
         Set<Clients> subscribers = subscribersByLocation.get(location);
