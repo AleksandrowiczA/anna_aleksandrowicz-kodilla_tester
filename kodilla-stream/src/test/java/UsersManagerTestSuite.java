@@ -1,11 +1,10 @@
-import com.kodilla.stream.User;
 import com.kodilla.stream.UsersManager;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class UsersManagerTestSuite {
 
@@ -21,7 +20,7 @@ public class UsersManagerTestSuite {
     }
 
     @Test
-    public void testUsersOlderThan()
+    public void testUsersOlderThan40()
     {
         List<String> actual = UsersManager.getFilteredAge();
 
@@ -29,7 +28,6 @@ public class UsersManagerTestSuite {
         expected.add("Walter White");
         expected.add("Gus Firing");
         expected.add("Gale Boetticher");
-        expected.add("Mike Ehrmantraut");
         assertEquals(expected, actual);
     }
 

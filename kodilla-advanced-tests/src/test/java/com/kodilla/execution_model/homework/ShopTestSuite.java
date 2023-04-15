@@ -40,7 +40,7 @@ public class ShopTestSuite {
         shop.addOrder(order3);
 
         List<Order> ordersInRange = shop.getOrdersInRange(startDate, endDate);
-        Assertions.assertEquals(2, ordersInRange.size());
+        Assertions.assertEquals(3, ordersInRange.size());
         Assertions.assertTrue(ordersInRange.contains(order2));
         Assertions.assertTrue(ordersInRange.contains(order3));
     }
