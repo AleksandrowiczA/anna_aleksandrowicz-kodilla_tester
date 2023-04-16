@@ -12,23 +12,23 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 public class CarFactoryTestSuite {
     @Test
     public void shouldReturnCabrioForJune() {
-        //Given
+
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
         Car car = (Car) context.getBean("getCar");
-        //When
+
         String carType = car.getCarType();
-        //Then
+
         Assertions.assertEquals("Cabrio", carType);
     }
 
     @Test
     public void shouldReturnFalseWhenTimeIsNotBetween20and6() {
-        //Given
+
         ApplicationContext context = new AnnotationConfigApplicationContext("com.kodilla.spring");
         Car car = (Car) context.getBean("getCar");
-        //When
+
         boolean lights = car.hasHeadlightsTurnedOn();
-        //Then
+
         assertFalse(lights);
     }
 
