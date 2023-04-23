@@ -30,4 +30,5 @@ public class BookDto {
     public int hashCode() {
         return Objects.hash(getTitle(), getAuthor());
     }
+
 }
