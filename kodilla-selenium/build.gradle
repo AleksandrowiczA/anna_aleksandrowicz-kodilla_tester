@@ -3,17 +3,20 @@ plugins {
 }
 
 group 'com.kodilla'
-version '1.0-SNAPSHOT'
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
-    implementation group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
-    testImplementation group: 'junit', name: 'junit', version: '5.3'
+    implementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.2'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.4.2'
+    testImplementation 'org.testng:testng:7.1.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.2'
+    implementation(group: 'com.github.lewka', name: 'ocular', version: '1.0.5'){
+        exclude group: "net.sf", module: "jargs"
+    }
 }
 
 test {
