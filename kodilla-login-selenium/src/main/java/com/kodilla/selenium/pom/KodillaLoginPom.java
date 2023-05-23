@@ -1,20 +1,36 @@
 package com.kodilla.selenium.pom;
 
-
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class KodillaLoginPom {
-    public static void main(String[] args) {
-        System.setProperty("webdriver.chrome.driver", "chromedriver");
-        WebDriver driver = new ChromeDriver();
-        driver.navigate().to("https://kodilla.com/pl/test/login");
 
-        WebElement inputField = driver.findElement(By.xpath("//html/body/section/form/div[1]/input"));
-        inputField.sendKeys("testuser@gmail.com");
-        inputField = driver.findElement(By.xpath("//html/body/section/form/div[2]/input"));
-        inputField.sendKeys("Haslo");
+    @FindBy(css = "input[type='email']")
+    WebElement emailField;
+
+    @FindBy(css = "input[type='password']")
+    WebElement passwordField;
+
+    @FindBy(xpath = "//button[contains(text(), 'Log in')]")
+    WebElement loginButton;
+
+    WebDriver driver;
+
+    public KodillaLoginPom(WebDriver driver) {
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+
+
+    }
+
+    public boolean login(String email, String password) {
+        emailField.sendKeys(email);
+        passwordField.sendKeys(password);
+        loginButton.click();
+        String message = driver.switchTo().alert().getText();
+        driver.switchTo().alert().dismiss();
+        return message.equals("Jesteś teraz zalogowany!");
     }
 }
